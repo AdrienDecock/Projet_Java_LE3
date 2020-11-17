@@ -1,7 +1,7 @@
 ceci est un test : 2
 encore une nouvelle ligne
 
-Test de nada <<<<<<< HEAD
+<<<<<<< HEAD
 Test de nada 
 =======
 loic ecrit :grvopeebinotib
