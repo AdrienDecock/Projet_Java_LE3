@@ -8,3 +8,5 @@ loic ecrit :grvopeebinotib
 btrtrb
 rbtrtbtb
 >>>>>>> 81d8f8d3dfd8e53fdcc5b4bab47b42e27e055b5f
+
+test pull request depuis la branche loic
