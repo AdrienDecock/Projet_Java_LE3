@@ -16,5 +16,6 @@ testfile
 
 salut
 
+test1
 
 test2
