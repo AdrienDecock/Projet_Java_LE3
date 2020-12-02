@@ -18,10 +18,10 @@ public class Box {
     //la longueur de la Box
     private int lBox;
     //le prix de la Box
-    private float prixBox;
+    private double prixBox;
     
         //constructeur
-    public Box(String idBox, int hBox, int lBox, float prixBox) {
+    public Box(String idBox, int hBox, int lBox, double prixBox) {
         this.idBox = idBox;
         this.hBox = hBox;
         this.lBox = lBox;
@@ -42,7 +42,7 @@ public class Box {
         return hBox;
     }
     //Recupere le prix de la Box
-    public float getPrix() {
+    public double getPrix() {
         return prixBox;
     }
 }

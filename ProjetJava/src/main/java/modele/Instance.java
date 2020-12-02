@@ -5,28 +5,30 @@
  */
 package modele;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author loic
  */
 public class Instance {
-        //2 attributs
-    //l'identifiant de l'instance
-    private String idInstance;
+        //1 attribut
     //le nom de l'instance
     private String nom;
-    
+    //la liste des box
+    private List<Box> listeBox;
+    //la liste des produits
+    private List<Produit> listeProduit;
+        
         //constructeur par données
-    public Instance(String idInstance, String nom) {
-        this.idInstance = idInstance;
+    public Instance(String nom) {
         this.nom = nom;
+        listeBox = new ArrayList<>();
+        listeProduit = new ArrayList<>();
     }
     
         //getters
-    //permet de recuperer l'identifiant de l'instance
-    public String getIdInstance() {
-        return idInstance;
-    }
     //permet de recuperer le nom de l'instance
     public String getNom() {
         return nom;
