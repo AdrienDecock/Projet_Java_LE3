@@ -15,10 +15,7 @@ import javax.persistence.*;
 public class Box {
         //4 attributs
     
-    @ManyToOne
-    @JoinColumn(name="IdInstanceBox")
-    private Instance instanceBox;
-    
+    private static final long serialVersionUID = 1L;
     // l'identifiant du Box
     @Id
     @Column(name = "IdBox")
@@ -36,6 +33,11 @@ public class Box {
     @Column(name = "PrixBox", nullable = false  )
     private double prixBox;
     
+    /*
+    @ManyToOne
+    @JoinColumn(name="IdInstanceBox")
+    private Instance instanceBox;
+    */
         //constructeur
     public Box(String idBox, int hBox, int lBox, double prixBox) {
         this.idBox = idBox;
@@ -64,8 +66,8 @@ public class Box {
     
         //setter
     //setter de instanceBox
-    public void setInstanceBox(Instance instanceBox) {
+   /* public void setInstanceBox(Instance instanceBox) {
         this.instanceBox = instanceBox;
-    }
+    }*/
     
 }

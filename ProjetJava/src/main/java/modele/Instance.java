@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class Instance {
         //2 attributs
     //identifiant de l'instance
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdInstance")
@@ -24,7 +25,7 @@ public class Instance {
     //le nom de l'instance
     @Column(name = "Nom", length = 45, nullable = false)
     private String nom;
-    
+    /*
     //la liste des box
     @OneToMany(mappedBy="instanceBox")
     private Set<Box> setBox;
@@ -32,12 +33,12 @@ public class Instance {
     //la liste des produits
     @OneToMany(mappedBy="instanceProd")
     private Set<Produit> setProduit;
-        
+        */
         //constructeur par données
     public Instance(String nom) {
         this.nom = nom;
-        this.setBox = new HashSet<>();
-        this.setProduit = new HashSet<>();
+        //this.setBox = new HashSet<>();
+        //this.setProduit = new HashSet<>();
     }
     
         //getters
@@ -57,10 +58,11 @@ public class Instance {
      * Ajouter les box aux instances
      * A REVOIR
      */
+    /*
     private boolean addBox(Box b){
         b.setInstanceBox(this);
         this.setBox.add(b);
         return true;
-    }
+    }*/
  
 }
