@@ -16,6 +16,7 @@ import io.exception.ReaderException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import modele.Instance;
 
 /**
  * Classe qui permet de lire une instance pour le projet de POO3 2020/2021.
