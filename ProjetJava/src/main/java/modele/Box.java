@@ -5,23 +5,41 @@
  */
 package modele;
 
+import javax.persistence.*;
+
 /**
  *
  * @author loic
  */
+@Entity
 public class Box {
         //4 attributs
-    // l'identifiant du Box
-    private String idBox;
-    //la hauteur de la Box
-    private int hBox;
-    //la longueur de la Box
-    private int lBox;
-    //le prix de la Box
-    private float prixBox;
     
+    private static final long serialVersionUID = 1L;
+    // l'identifiant du Box
+    @Id
+    @Column(name = "IdBox")
+    private String idBox;
+    
+    //la hauteur de la Box
+    @Column(name = "HauteurBox", nullable = false  )
+    private int hBox;
+    
+    //la longueur de la Box
+    @Column(name = "LongueurBox", nullable = false  )
+    private int lBox;
+    
+    //le prix de la Box
+    @Column(name = "PrixBox", nullable = false  )
+    private double prixBox;
+    
+    /*
+    @ManyToOne
+    @JoinColumn(name="IdInstanceBox")
+    private Instance instanceBox;
+    */
         //constructeur
-    public Box(String idBox, int hBox, int lBox, float prixBox) {
+    public Box(String idBox, int hBox, int lBox, double prixBox) {
         this.idBox = idBox;
         this.hBox = hBox;
         this.lBox = lBox;
@@ -42,7 +60,14 @@ public class Box {
         return hBox;
     }
     //Recupere le prix de la Box
-    public float getPrix() {
+    public double getPrix() {
         return prixBox;
     }
+    
+        //setter
+    //setter de instanceBox
+   /* public void setInstanceBox(Instance instanceBox) {
+        this.instanceBox = instanceBox;
+    }*/
+    
 }
