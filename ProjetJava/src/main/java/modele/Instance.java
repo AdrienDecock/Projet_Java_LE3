@@ -5,38 +5,39 @@
  */
 package modele;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 /**
  *
  * @author loic
  */
+@Entity
 public class Instance {
         //2 attributs
-    //le nom de l'instance
+    //identifiant de l'instance
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdInstance")
     private int idInstance;
     
-    @Column(name = "Nom",
-            length = 45,
-            nullable = false
-    )
+    //le nom de l'instance
+    @Column(name = "Nom", length = 45, nullable = false)
     private String nom;
     
     //la liste des box
-    private List<Box> listeBox;
+    @OneToMany(mappedBy="instanceBox")
+    private Set<Box> setBox;
     
     //la liste des produits
-    private List<Produit> listeProduit;
+    @OneToMany(mappedBy="instanceProd")
+    private Set<Produit> setProduit;
         
         //constructeur par données
     public Instance(String nom) {
         this.nom = nom;
-        this.listeBox = new ArrayList<>();
-        this.listeProduit = new ArrayList<>();
+        this.setBox = new HashSet<>();
+        this.setProduit = new HashSet<>();
     }
     
         //getters
@@ -50,5 +51,16 @@ public class Instance {
         return nom;
     }
     
-    
+        //methodes
+  
+    /**
+     * Ajouter les box aux instances
+     * A REVOIR
+     */
+    private boolean addBox(Box b){
+        b.setInstanceBox(this);
+        this.setBox.add(b);
+        return true;
+    }
+ 
 }

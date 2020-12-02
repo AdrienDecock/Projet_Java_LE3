@@ -5,19 +5,35 @@
  */
 package modele;
 
+import javax.persistence.*;
+
 /**
  *
  * @author loic
  */
+@Entity
 public class Produit {
         //4 attributs
+    
+    @ManyToOne
+    @JoinColumn(name="IdInstance")
+    private Instance instanceProd;
+    
     //l'identifiant du Produit
+    @Id
+    @Column(name = "IdProduit")
     private String idProd;
+    
     //la hauteur du Produit
+    @Column(name = "HauteurProduit", nullable = false  )
     private int hProd;
+    
     //la longueur du produit
+    @Column(name = "LongueurProduit", nullable = false  )
     private int lProd;
+    
     //la quantité du produit
+    @Column(name = "QuantiteProduit", nullable = false  )
     private int quantite;
     
         //constructeur par données

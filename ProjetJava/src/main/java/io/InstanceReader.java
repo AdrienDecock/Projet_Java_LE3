@@ -126,7 +126,7 @@ public class InstanceReader {
             ////////////////////////////////////////////
         }
     }
-
+      
     /**
      * Lecture de plusieurs chaines de caracteres dans une seule ligne
      * @param scanner lecteur du fichier
