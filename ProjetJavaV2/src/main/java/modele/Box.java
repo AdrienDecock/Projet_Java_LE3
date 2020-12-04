@@ -6,6 +6,7 @@
 package modele;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -40,12 +41,19 @@ public class Box implements Serializable {
     @JoinColumn(name="IDINSTANCE")
     private Instance instanceBox;
     
+    
+    //association vers OptiBox
+    @OneToMany(mappedBy="boxOptiBox")
+    private Set<OptiBox> setOptiBox;
+    
     //constructeur défaut
     public Box() {
         this.idBox = "DEFAULT_IDBOX";
         this.hBox = 0;
         this.lBox = 0;
         this.prixBox = 0.0;
+        
+        this.setOptiBox = new HashSet<>();
     }
     
         

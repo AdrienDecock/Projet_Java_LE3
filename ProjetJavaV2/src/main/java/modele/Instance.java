@@ -36,6 +36,9 @@ public class Instance implements Serializable {
     @OneToMany(mappedBy="instanceProd")
     private Set<Produit> setProduit;
     
+    //association vers solution
+    @OneToMany(mappedBy="instanceSolution")
+    private Set<Solution> setSolution;
             
         //constructeur par defaut
     public Instance() {

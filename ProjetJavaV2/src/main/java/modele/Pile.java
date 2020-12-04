@@ -6,7 +6,8 @@
 package modele;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -35,18 +36,18 @@ public class Pile implements Serializable {
     //sa Box
     @ManyToOne
     @JoinColumn(name="IDOPTIBOX")
-    private Box optiBoxPile;
+    private OptiBox optiBoxPile;
     
     //ensemble de produit
     @OneToMany(mappedBy="pileProd")
-    private Set<Produit> setProduitPile;
+    private List<Produit> listeProduitPile;
     
         //constructeur
     //constructeur par defaut
     public Pile() {
         this.hPile = 0;
         this.lPile = 0;
-        this.setProduitPile = new HashSet<>();
+        this.listeProduitPile = new LinkedList<>();
     }
     //constructeur par données
     public Pile(int idPile, int hPile, int lPile, Box boxPile, Set<Produit> setProduitPile) {
