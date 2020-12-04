@@ -5,6 +5,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -12,7 +13,7 @@ import javax.persistence.*;
  * @author loic
  */
 @Entity
-public class Produit {
+public class Produit implements Serializable {
         //4 attributs
     
 
