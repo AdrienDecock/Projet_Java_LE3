@@ -28,8 +28,8 @@ public class Solution implements Serializable {
     @JoinColumn(name="IDINSTANCE")
     private Instance instanceSolution;
     //optiBox
-    @OneToMany(mappedBy="IDOPTIBOX")
-    private Set<Box> setOptiBoxResultat;
+    @OneToMany(mappedBy="solutionOptiBox")
+    private Set<OptiBox> setOptiBoxResultat;
 
         //constructeur
     //constructeur par defaut
