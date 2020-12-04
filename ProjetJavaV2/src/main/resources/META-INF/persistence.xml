@@ -5,6 +5,7 @@
     <class>modele.Box</class>
     <class>modele.Instance</class>
     <class>modele.Produit</class>
+    <class>modele.Pile</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/OptiBox"/>

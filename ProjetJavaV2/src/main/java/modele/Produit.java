@@ -35,11 +35,15 @@ public class Produit implements Serializable {
     @Column(name = "QUANTITEPRODUIT", nullable = false  )
     private int quantite;
     
-    
+    //instance
     @ManyToOne
     @JoinColumn(name="IDINSTANCE")
     private Instance instanceProd;
     
+    //pile
+    @ManyToOne
+    @JoinColumn(name="IDPILE")
+    private Pile pileProd;
     
     
     //constructeur par defaut
