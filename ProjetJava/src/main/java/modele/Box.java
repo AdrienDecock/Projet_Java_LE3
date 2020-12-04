@@ -6,14 +6,18 @@
 package modele;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
- * @author loic
+ * @author nadae
  */
 @Entity
-public class Box implements Serializable  {
+public class Box implements Serializable {
         //4 attributs
     
     private static final long serialVersionUID = 1L;
@@ -70,5 +74,6 @@ public class Box implements Serializable  {
    /* public void setInstanceBox(Instance instanceBox) {
         this.instanceBox = instanceBox;
     }*/
+    
     
 }
