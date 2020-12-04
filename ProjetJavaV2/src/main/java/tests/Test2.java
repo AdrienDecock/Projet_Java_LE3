@@ -6,8 +6,9 @@
 package tests;
 
 import javax.persistence.*;
-import modele.Medecin;
-import modele.Service;
+import modele.Box;
+import modele.Instance;
+import modele.Produit;
 
 /**
  *
@@ -17,19 +18,28 @@ public class Test2 {
 
     public static void main(String[] args) {
 
-        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Hopital2PU");
+        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("OptiBoxPU");
         final EntityManager em = emf.createEntityManager();
         try {
             final EntityTransaction et = em.getTransaction();
             try {
                 et.begin();
 
-                Medecin med1 = new Medecin("Trancen", "Jean", 2135.23);
-                Medecin med2 = new Medecin("Gator", "Coralie", 3156.00);
-                Medecin med3 = new Medecin("Test", "Magalie", 2545.3723);
-                em.persist(med1);
-                em.persist(med2);
-                em.persist(med3);
+                Instance i1 = new Instance("Trancen");
+                //Instance med2 = new Instance("Gator");
+                //Instance med3 = new Instance("Test");
+                //Box b1 = new Box("petite boite", 30, 15, 12.5);
+                //Box b2 = new Box("grande boite", 50, 35, 22.5);
+                //Produit p1 = new Produit("rouge",10,7,3);
+                
+                
+                em.persist(i1);
+                //em.persist(med2);
+                //em.persist(med3);
+                //em.persist(b1);
+                //em.persist(b2);
+                //em.persist(p1);
+
 
                 et.commit();
             } catch (Exception ex) {
