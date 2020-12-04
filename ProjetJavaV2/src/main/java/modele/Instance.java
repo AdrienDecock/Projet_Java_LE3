@@ -40,8 +40,8 @@ public class Instance implements Serializable {
         //constructeur par defaut
     public Instance() {
         this.nom = "DEFAULT_NAME";
-        //this.setBox = new HashSet<>();
-        //this.setProduit = new HashSet<>();
+        this.setBox = new HashSet<>();
+        this.setProduit = new HashSet<>();
     }
     
     
@@ -50,8 +50,6 @@ public class Instance implements Serializable {
     public Instance(String nom) {
         this();
         this.nom = nom;
-        //this.setBox = new HashSet<>();
-        //this.setProduit = new HashSet<>();
     }
     
         //getters
@@ -73,6 +71,8 @@ public class Instance implements Serializable {
      */
     
     public boolean addBox(Box b){
+        
+        if (b == null) return false;
         b.setInstanceBox(this);
         this.setBox.add( b );
         return true;
@@ -80,6 +80,8 @@ public class Instance implements Serializable {
     
         
     public boolean addProduit(Produit p){
+        
+        if (p == null) return false;
         p.setInstanceProd(this);
         this.setProduit.add(p);
         return true;

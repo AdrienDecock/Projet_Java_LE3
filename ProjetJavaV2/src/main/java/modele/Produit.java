@@ -80,6 +80,8 @@ public class Produit implements Serializable {
     //setter
     
     public void setInstanceProd(Instance instanceProd) {
+        
+        if (instanceProd == null) return;
         this.instanceProd = instanceProd;
     }
     

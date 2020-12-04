@@ -95,6 +95,9 @@ public class Box implements Serializable {
     //setter de instanceBox
     
     public void setInstanceBox(Instance instanceBox) {
+        
+        if (instanceBox == null) return;
+        
         this.instanceBox = instanceBox;
     }
     

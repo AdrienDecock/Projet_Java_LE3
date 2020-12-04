@@ -87,7 +87,7 @@ public class InstanceReader {
         ////////////////////////////////////////////
         // TODO : Vous pouvez creer une instance.
         
-                final EntityManagerFactory emf = Persistence.createEntityManagerFactory("OptiBoxPU");
+        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("OptiBoxPU");
         final EntityManager em = emf.createEntityManager();
         try {
             final EntityTransaction et = em.getTransaction();
@@ -132,6 +132,7 @@ public class InstanceReader {
         }
         
         // Dans la boucle qui suit, nous allons lire les donnees relatives a chaque produit.
+        Produit produit;
         while(true) {
             InfosProduit elem = readProduitInLine(scanner);
             if(elem == null) {
@@ -152,6 +153,10 @@ public class InstanceReader {
             + elem.getHauteur() + " - "
             + elem.getQuantite()
             );
+            
+            produit = new Produit(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur(), elem.getQuantite());
+            instance.addProduit(produit );
+            em.persist(produit);      
             
             
             ////////////////////////////////////////////
