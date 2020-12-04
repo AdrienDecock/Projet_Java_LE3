@@ -5,6 +5,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import javax.persistence.*;
  * @author loic
  */
 @Entity
-public class Instance {
+public class Instance implements Serializable {
         //2 attributs
     //identifiant de l'instance
     private static final long serialVersionUID = 1L;

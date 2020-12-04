@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>modele.Instance</class>
     <class>modele.Box</class>
+    <class>modele.NewEntity</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/OptiBox"/>
       <property name="javax.persistence.jdbc.user" value="loic"/>

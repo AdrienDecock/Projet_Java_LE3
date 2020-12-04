@@ -5,6 +5,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -12,7 +13,7 @@ import javax.persistence.*;
  * @author loic
  */
 @Entity
-public class Box {
+public class Box implements Serializable  {
         //4 attributs
     
     private static final long serialVersionUID = 1L;
