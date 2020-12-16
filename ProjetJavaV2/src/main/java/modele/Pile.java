@@ -50,10 +50,9 @@ public class Pile implements Serializable {
         this.listeProduitPile = new LinkedList<>();
     }
     //constructeur par données
-    public Pile( int hPile, int lPile, OptiBox optiboxPile, Set<Produit> setProduitPile) {
+    public Pile( OptiBox optiboxPile) {
         this();
-        this.hPile = hPile;
-        this.lPile = lPile;
+        this.optiBoxPile = optiboxPile;
     }
     
     
@@ -76,10 +75,34 @@ public class Pile implements Serializable {
      * Methode pour empiler des produits
      */
     
+    
+    public int getLongeurSommet(){
+        
+        if (this.lPile ==0) return 0;
+        return (this.listeProduitPile.get( this.listeProduitPile.size()).getLongueur() );
+        
+    }
+    
     public boolean empiler(Produit p){
         if (optiBoxPile == null) return false; //on verifie l'existance d'une optiBox
-        if (this.hPile==0 ) {
+        if (this.hPile==0 ) { //premier produit de la pile
             
+            if (p.getHauteur() > this.optiBoxPile.getOptiHauteur()) return false;
+            if (p.getLongueur() > this.optiBoxPile.getLongueurDispo()) return false;
+                        
+            this.lPile = p.getLongueur();
+            this.listeProduitPile.add(p);
+            this.hPile = p.getHauteur();
+            return true;
+        }
+        else {
+            
+            if (p.getHauteur() + this.hPile > this.optiBoxPile.getOptiHauteur()) return false;
+            if (p.getLongueur() > this.getLongeurSommet() ) return false;
+            
+            this.listeProduitPile.add(p);
+            this.hPile = this.hPile + p.getHauteur();
+            return true;
         }
     }
    

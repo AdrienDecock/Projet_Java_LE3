@@ -42,7 +42,7 @@ public class OptiBox implements Serializable {
     
         //constructeurs
     //constructeur par defaut
-    OptiBox(){
+    public OptiBox(){
         this.setPile = new HashSet<>();
     }
     //constructeir par données
@@ -82,7 +82,16 @@ public class OptiBox implements Serializable {
         this.solutionOptiBox = solutionOptiBox;
     }
     
-    
+    public int getLongueurDispo(){
+        
+        int lDispo = this.getOptiLongueur();
+        
+        for (Pile p : setPile){
+            
+            lDispo = lDispo - p.getlPile(); 
+        }
+        return lDispo;
+    }
     
     
 }
