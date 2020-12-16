@@ -40,11 +40,38 @@ public class OptiBox implements Serializable {
     @OneToMany(mappedBy="optiBoxPile")
     private Set<Pile> setPile;
     
+        //constructeurs
+    //constructeur par defaut
     OptiBox(){
-        
         this.setPile = new HashSet<>();
     }
-
+    //constructeir par données
+    public OptiBox(Box boxOptiBox) {
+        this();
+        this.boxOptiBox = boxOptiBox;
+    }
+    
+    
+        //getters
+    //Recupere la longueur de la Box
+    public int getOptiLongueur() {
+        if (boxOptiBox == null) return 0;
+        return boxOptiBox.getLongueur();
+    }
+    //Recupere la hauteur de la Box
+    public int getOptiHauteur() {
+        if (boxOptiBox == null) return 0;
+        return boxOptiBox.getHauteur();
+    }
+    //Recupere le prix de la Box
+    public double getOptiPrix() {
+        if (boxOptiBox == null) return 0;
+        return boxOptiBox.getPrix();
+    }
+   
+    
+    
+        //setters
     public void setBoxOptiBox(Box boxOptiBox) {
         if (boxOptiBox == null) return;
         this.boxOptiBox = boxOptiBox;

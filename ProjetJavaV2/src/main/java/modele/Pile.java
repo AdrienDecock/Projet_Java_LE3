@@ -50,9 +50,8 @@ public class Pile implements Serializable {
         this.listeProduitPile = new LinkedList<>();
     }
     //constructeur par données
-    public Pile(int idPile, int hPile, int lPile, Box boxPile, Set<Produit> setProduitPile) {
+    public Pile( int hPile, int lPile, OptiBox optiboxPile, Set<Produit> setProduitPile) {
         this();
-        this.idPile = idPile;
         this.hPile = hPile;
         this.lPile = lPile;
     }
@@ -72,8 +71,16 @@ public class Pile implements Serializable {
         return lPile;
     }
     
+    //methodes
+    /**
+     * Methode pour empiler des produits
+     */
     
-    
-
+    public boolean empiler(Produit p){
+        if (optiBoxPile == null) return false; //on verifie l'existance d'une optiBox
+        if (this.hPile==0 ) {
+            
+        }
+    }
    
 }
