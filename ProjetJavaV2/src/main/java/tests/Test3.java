@@ -26,13 +26,15 @@ public class Test3 { //test Pile
                 Box b = new Box("petiteBoite", 10, 10, 10);
                 OptiBox optiBox = new OptiBox(b);
                 
-                Produit p1 = new Produit("prod1",2,3,1);
-                Produit p2 = new Produit("prod2",3,4,1);
-                Produit p3 = new Produit("prod3",5,3,1);
+                Produit p1 = new Produit("prod1",2,3);
+                Produit p2 = new Produit("prod2",3,4);
+                Produit p3 = new Produit("prod3",5,3);
                 
                 Pile pile = new Pile(optiBox);
-                //pile.empiler(p2);
-                pile.empiler(p3);
+                System.out.println(pile.empiler(p1));
+                System.out.println(pile.empiler(p2));
+                System.out.println(pile.empiler(p1));
+                System.out.println(pile.empiler(p3));
                 //pile.empiler(p1);
                 
                 

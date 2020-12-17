@@ -82,6 +82,7 @@ public class OptiBox implements Serializable {
         this.solutionOptiBox = solutionOptiBox;
     }
     
+    //return la longueur non utilisée dans la boite
     public int getLongueurDispo(){
         
         int lDispo = this.getOptiLongueur();
@@ -91,6 +92,18 @@ public class OptiBox implements Serializable {
             lDispo = lDispo - p.getlPile(); 
         }
         return lDispo;
+    }
+    
+    public boolean addPileOptiBox(Pile p){
+        
+        if (p == null) return false;
+        if (!p.estLibre()) return false;
+        
+        if ( this.getLongueurDispo() + p.getlPile() > this.getOptiLongueur() ) return false;
+        
+        if (!p.setOptiBoxPile(this)) return false;
+        this.setPile.add(p);
+        return true;
     }
     
     

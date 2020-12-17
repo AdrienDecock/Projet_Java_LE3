@@ -133,6 +133,9 @@ public class InstanceReader {
         
         // Dans la boucle qui suit, nous allons lire les donnees relatives a chaque produit.
         Produit produit;
+        int nbArticle;
+        int i;
+        
         while(true) {
             InfosProduit elem = readProduitInLine(scanner);
             if(elem == null) {
@@ -153,11 +156,15 @@ public class InstanceReader {
             + elem.getHauteur() + " - "
             + elem.getQuantite()
             );
+            //boucle for pour la création de plusieurs produits identiques
+            nbArticle = elem.getQuantite();
             
-            produit = new Produit(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur(), elem.getQuantite());
+            for (i =0; i< elem.getQuantite(); i++){
+            
+            produit = new Produit(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur());
             instance.addProduit(produit );
             em.persist(produit);      
-            
+            }
             
             ////////////////////////////////////////////
             // TODO : Vous pouvez ajoutez chacun des produits a votre instance

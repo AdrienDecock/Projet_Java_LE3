@@ -70,21 +70,38 @@ public class Pile implements Serializable {
         return lPile;
     }
     
+    
+    //renvoie false si la pile appartient a un optiBox
+    //renvoie true sinon
+    public boolean estLibre() {
+        
+        if (this.optiBoxPile == null) return true;
+        return false;
+    }
+    
+    public boolean setOptiBoxPile(OptiBox b) {
+        
+        if (b == null) return false;
+        if (!this.estLibre()) return false;
+        this.optiBoxPile = b;
+        return true;
+    }
+    
     //methodes
     /**
      * Methode pour empiler des produits
      */
-    
-    
     public int getLongeurSommet(){
         
         if (this.lPile ==0) return 0;
-        return (this.listeProduitPile.get( this.listeProduitPile.size()).getLongueur() );
+        return (this.listeProduitPile.get( this.listeProduitPile.size()-1).getLongueur() );
         
     }
     
     public boolean empiler(Produit p){
+        if (!p.estLibre()) return false; //on verifie si le produit est deja empile
         if (optiBoxPile == null) return false; //on verifie l'existance d'une optiBox
+        
         if (this.hPile==0 ) { //premier produit de la pile
             
             if (p.getHauteur() > this.optiBoxPile.getOptiHauteur()) return false;
@@ -93,6 +110,7 @@ public class Pile implements Serializable {
             this.lPile = p.getLongueur();
             this.listeProduitPile.add(p);
             this.hPile = p.getHauteur();
+            p.setPileProd(this);
             return true;
         }
         else {
@@ -102,8 +120,10 @@ public class Pile implements Serializable {
             
             this.listeProduitPile.add(p);
             this.hPile = this.hPile + p.getHauteur();
+            p.setPileProd(this);
             return true;
         }
     }
+   
    
 }

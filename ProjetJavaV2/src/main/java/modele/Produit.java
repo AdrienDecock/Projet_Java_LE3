@@ -20,8 +20,13 @@ public class Produit implements Serializable {
     private static final long serialVersionUID = 1L;
     //l'identifiant du Produit
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDPRODUIT")
-    private String idProd;
+    private int idProd;
+    
+    //nom du produit
+    @Column(name = "NOMPRODUIT")
+    private String nomProd;
     
     //la hauteur du Produit
     @Column(name = "HAUTEURPRODUIT", nullable = false  )
@@ -30,10 +35,7 @@ public class Produit implements Serializable {
     //la longueur du produit
     @Column(name = "LONGUEURPRODUIT", nullable = false  )
     private int lProd;
-    
-    //la quantité du produit
-    @Column(name = "QUANTITEPRODUIT", nullable = false  )
-    private int quantite;
+
     
     //instance
     @ManyToOne
@@ -48,24 +50,26 @@ public class Produit implements Serializable {
     
     //constructeur par defaut
     public Produit() {
-        this.idProd = "DEFAULT_IDPROD";
+        this.nomProd = "DEFAULT_NOM";
         this.hProd = 0;
         this.lProd = 0;
-        this.quantite = 0;
     }
     
         //constructeur par données
-    public Produit(String idProd, int hProd, int lProd, int quantite) {
-        this.idProd = idProd;
+    public Produit(String nomProd, int hProd, int lProd) {
+        this.nomProd = nomProd;
         this.hProd = hProd;
         this.lProd = lProd;
-        this.quantite = quantite;
     }
     
         //getters
     //Recupere l'identifiant du produit
-    public String getIdentifiant() {
+    public int getIdentifiant() {
         return idProd;
+    }
+    
+    public String getNomProd() {
+    return nomProd;
     }
     //Recupere la longueur du produit
     public int getLongueur() {
@@ -75,18 +79,27 @@ public class Produit implements Serializable {
     public int getHauteur() {
         return hProd;
     }
-    //Recupere la quantité du produit
-    public int getQuantite() {
-        return quantite;
+
+    //renvoie false si le produit appartient a une pile
+    //renvoie true sinon
+    public boolean estLibre() {
+        
+        if (this.pileProd == null) return true;
+        return false;
     }
     
     
     //setter
-    
     public void setInstanceProd(Instance instanceProd) {
         
         if (instanceProd == null) return;
         this.instanceProd = instanceProd;
+    }
+    
+        public void setPileProd(Pile pile) {
+        
+        if (pile == null) return;
+        this.pileProd = pile;
     }
     
     
