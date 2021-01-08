@@ -70,7 +70,6 @@ public class Instance implements Serializable {
   
     /**
      * Ajouter les box aux instances
-     * A REVOIR
      */
     
     public boolean addBox(Box b){
