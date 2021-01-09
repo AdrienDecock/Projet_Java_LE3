@@ -14,6 +14,7 @@ import javax.persistence.*;
  * @author loic
  */
 @Entity
+@Access(AccessType.FIELD)
 public class Instance implements Serializable {
         //2 attributs
     //identifiant de l'instance
@@ -29,15 +30,18 @@ public class Instance implements Serializable {
     
     
     //la liste des box
-    @OneToMany(mappedBy="instanceBox")
+    @OneToMany(mappedBy="instanceBox",
+            cascade = CascadeType.PERSIST)
     private Set<Box> setBox;
     
     //la liste des produits
-    @OneToMany(mappedBy="instanceProd")
+    @OneToMany(mappedBy="instanceProd",
+            cascade = CascadeType.PERSIST)
     private Set<Produit> setProduit;
     
     //association vers solution
-    @OneToMany(mappedBy="instanceSolution")
+    @OneToMany(mappedBy="instanceSolution",
+            cascade = CascadeType.PERSIST)
     private Set<Solution> setSolution;
             
         //constructeur par defaut
@@ -45,6 +49,7 @@ public class Instance implements Serializable {
         this.nom = "DEFAULT_NAME";
         this.setBox = new HashSet<>();
         this.setProduit = new HashSet<>();
+        this.setSolution = new HashSet<>();
     }
     
     
@@ -80,6 +85,9 @@ public class Instance implements Serializable {
         return true;
     }
     
+    /**
+     * Ajouter les produits aux instances
+     */
         
     public boolean addProduit(Produit p){
         

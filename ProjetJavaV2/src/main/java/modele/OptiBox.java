@@ -16,6 +16,7 @@ import javax.persistence.*;
  * @author loic
  */
 @Entity
+@Access(AccessType.FIELD)
 public class OptiBox implements Serializable {
     
         private static final long serialVersionUID = 1L;
@@ -26,18 +27,18 @@ public class OptiBox implements Serializable {
     
     
     //association vers box
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDBOX")
     private Box boxOptiBox;
     
     //association vers solution
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDSOLUTION")
     private Solution solutionOptiBox;
     
     
     //association vers pile
-    @OneToMany(mappedBy="optiBoxPile")
+    @OneToMany(mappedBy="optiBoxPile",cascade = CascadeType.PERSIST)
     private Set<Pile> setPile;
     
         //constructeurs

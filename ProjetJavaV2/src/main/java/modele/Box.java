@@ -15,12 +15,14 @@ import javax.persistence.*;
  * @author nadae
  */
 @Entity
+@Access(AccessType.FIELD)
 public class Box implements Serializable {
         //4 attributs
     
     private static final long serialVersionUID = 1L;
+    
+    @Id   
     // l'identifiant du Box
-    @Id
     @Column(name = "IDBOX")
     private String idBox;
     
@@ -37,23 +39,23 @@ public class Box implements Serializable {
     private double prixBox;
     
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDINSTANCE")
     private Instance instanceBox;
     
-    
+    /*
     //association vers OptiBox
-    @OneToMany(mappedBy="boxOptiBox")
+    @OneToMany(mappedBy="boxOptiBox",cascade = CascadeType.PERSIST)
     private Set<OptiBox> setOptiBox;
-    
+    */
     //constructeur défaut
     public Box() {
         this.idBox = "DEFAULT_IDBOX";
         this.hBox = 0;
         this.lBox = 0;
         this.prixBox = 0.0;
-        
-        this.setOptiBox = new HashSet<>();
+        this.instanceBox = new Instance();
+      //  this.setOptiBox = new HashSet<>();
     }
     
         

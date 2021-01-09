@@ -10,6 +10,7 @@ import javax.persistence.*;
  * @author nadae
  */
 @Entity
+@Access(AccessType.FIELD)
 public class Solution implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,11 +25,11 @@ public class Solution implements Serializable {
     private double prixTotal;
 
     //instance
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDINSTANCE")
     private Instance instanceSolution;
     //optiBox
-    @OneToMany(mappedBy="solutionOptiBox")
+    @OneToMany(mappedBy="solutionOptiBox",cascade = CascadeType.PERSIST)
     private Set<OptiBox> setOptiBoxResultat;
 
         //constructeur

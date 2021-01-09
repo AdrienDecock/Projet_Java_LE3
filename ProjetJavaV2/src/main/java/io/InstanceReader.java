@@ -15,7 +15,11 @@ import io.exception.OpenFileException;
 import io.exception.ReaderException;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -75,7 +79,7 @@ public class InstanceReader {
      * @throws ReaderException lorsque les donnees dans le fichier d'instance 
      * sont manquantes ou au mauvais format.
      */
-    public void readInstance() throws ReaderException {
+    public Instance readInstance() throws ReaderException {
         Scanner scanner = null;
         try {
             scanner = new Scanner(instanceFile);
@@ -87,20 +91,20 @@ public class InstanceReader {
         ////////////////////////////////////////////
         // TODO : Vous pouvez creer une instance.
         
-        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("OptiBoxPU");
+        /*final EntityManagerFactory emf = Persistence.createEntityManagerFactory("OptiBoxPU");
         final EntityManager em = emf.createEntityManager();
         try {
             final EntityTransaction et = em.getTransaction();
             try {
                 et.begin();
-        
+        */
         Instance instance = new Instance(nom);
         
         ////////////////////////////////////////////
         
         readStringInLine(scanner, HEADER_BOX);
         // Dans la boucle qui suit, nous allons lire les donnees relatives a chaque box.
-        Box box;
+        
         
         while(true) {
             InfosBox elem = readBoxInLine(scanner, HEADER_PRODUIT);
@@ -121,9 +125,9 @@ public class InstanceReader {
             + elem.getHauteur() + " - "
             + elem.getPrix()
             );
-            box = new Box(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur(), elem.getPrix());
+            Box box = new Box(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur(), elem.getPrix());
             instance.addBox( box );
-            em.persist(box);
+            //em.persist(box);
             
             ////////////////////////////////////////////
             // TODO : Vous pouvez ajoutez chacun des box a votre instance
@@ -132,7 +136,7 @@ public class InstanceReader {
         }
         
         // Dans la boucle qui suit, nous allons lire les donnees relatives a chaque produit.
-        Produit produit;
+        
         int nbArticle;
         int i;
         
@@ -156,25 +160,25 @@ public class InstanceReader {
             + elem.getHauteur() + " - "
             + elem.getQuantite()
             );
+            ////////////////////////////////////////////
+            // TODO : Vous pouvez ajoutez chacun des produits a votre instance
+            //Produit produit = new Produit(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur(), elem.getQuantite());
+            ////////////////////////////////////////////
+            
             //boucle for pour la création de plusieurs produits identiques
             nbArticle = elem.getQuantite();
             
             for (i =0; i< elem.getQuantite(); i++){
             
-            produit = new Produit(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur());
+            Produit produit = new Produit(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur());
             instance.addProduit(produit );
-            em.persist(produit);      
+            //em.persist(produit);      
             }
-            
-            ////////////////////////////////////////////
-            // TODO : Vous pouvez ajoutez chacun des produits a votre instance
-            //Produit produit = new Produit(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur(), elem.getQuantite());
-            ////////////////////////////////////////////
         }
             
         ///////////////////////////////////////////////////
-        em.persist(instance);
-            et.commit();
+        //em.persist(instance);
+            /*et.commit();
             } catch (Exception ex) {
                 System.out.println(ex);
                 et.rollback();
@@ -186,7 +190,8 @@ public class InstanceReader {
             if (emf != null && emf.isOpen()) {
                 emf.close();
             }
-        }
+        }*/
+    return instance;
     }
       
     /**
@@ -440,12 +445,47 @@ public class InstanceReader {
      * Un petit test pour verifier que tout fonctionne correctement.
      */
     public static void main(String[] args) {
-        try {
-            InstanceReader reader = new InstanceReader("instance_test.csv");
-            reader.readInstance();
-            System.out.println("Instance lue avec success !");
-        } catch (ReaderException ex) {
-            System.out.println(ex.getMessage());
+        List<Instance> setInstances = new ArrayList<>();
+        //try {
+            String filename = new String();
+            final EntityManagerFactory emf = Persistence.createEntityManagerFactory("OptiBoxPU");
+            final EntityManager em = emf.createEntityManager();
+            try {
+                final EntityTransaction et = em.getTransaction();
+                try {
+                    et.begin();
+                    System.out.println("Fin begin \n");
+                    for (int i = 1; i < 11; i++) {
+                    //    int i =1;
+                        filename = "instance_"+i+".csv";
+                        System.out.println("\n\nInstance : " +filename);
+                        InstanceReader reader = new InstanceReader(filename);
+                        Instance instance =  reader.readInstance();
+                        setInstances.add(instance);
+                        System.out.println("Instance lue avec success !");
+                        
+                        
+                    }
+                    for (Instance objInst : setInstances) {
+                        System.out.println(objInst.getNom());
+                        em.persist(objInst);
+                       System.out.println("Fin persist \n");
+                    }
+                    
+                    et.commit();
+                    System.out.println("instances ajoutés a la bdd \n");
+                    System.out.println("Fin commit \n");
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                et.rollback();
+            }
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+            if (emf != null && emf.isOpen()) {
+                emf.close();
+            }
         }
     }
 }

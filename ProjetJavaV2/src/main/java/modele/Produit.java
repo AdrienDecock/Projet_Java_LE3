@@ -13,6 +13,7 @@ import javax.persistence.*;
  * @author loic
  */
 @Entity
+@Access(AccessType.FIELD)
 public class Produit implements Serializable {
         //4 attributs
     
@@ -38,12 +39,12 @@ public class Produit implements Serializable {
 
     
     //instance
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDINSTANCE")
     private Instance instanceProd;
     
     //pile
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDPILE")
     private Pile pileProd;
     

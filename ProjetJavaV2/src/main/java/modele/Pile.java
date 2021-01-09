@@ -16,6 +16,7 @@ import javax.persistence.*;
  * @author nadae
  */
 @Entity
+@Access(AccessType.FIELD)
 public class Pile implements Serializable {
     private static final long serialVersionUID = 1L;
         //attributs
@@ -34,12 +35,12 @@ public class Pile implements Serializable {
     private int lPile;
     
     //sa Box
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="IDOPTIBOX")
     private OptiBox optiBoxPile;
     
     //ensemble de produit
-    @OneToMany(mappedBy="pileProd")
+    @OneToMany(mappedBy="pileProd",cascade = CascadeType.PERSIST)
     private List<Produit> listeProduitPile;
     
         //constructeur
