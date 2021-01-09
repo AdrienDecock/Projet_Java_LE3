@@ -456,7 +456,7 @@ public class InstanceReader {
                     et.begin();
                     System.out.println("Fin begin \n");
                     for (int i = 1; i < 11; i++) {
-                    //    int i =1;
+                        //int i =1;
                         filename = "instance_"+i+".csv";
                         System.out.println("\n\nInstance : " +filename);
                         InstanceReader reader = new InstanceReader(filename);

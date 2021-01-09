@@ -23,8 +23,14 @@ public class Box implements Serializable {
     
     @Id   
     // l'identifiant du Box
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDBOX")
-    private String idBox;
+    private int idBox;
+    
+    //nom de la box
+    @Column(name = "NOMBOX")
+    private String nomBox;
+    
     
     //la hauteur de la Box
     @Column(name = "HAUTEURBOX", nullable = false  )
@@ -43,14 +49,14 @@ public class Box implements Serializable {
     @JoinColumn(name="IDINSTANCE")
     private Instance instanceBox;
     
-    /*
+    
     //association vers OptiBox
     @OneToMany(mappedBy="boxOptiBox",cascade = CascadeType.PERSIST)
     private Set<OptiBox> setOptiBox;
-    */
+    
     //constructeur défaut
     public Box() {
-        this.idBox = "DEFAULT_IDBOX";
+        this.nomBox = "DEFAULT_IDBOX";
         this.hBox = 0;
         this.lBox = 0;
         this.prixBox = 0.0;
@@ -62,15 +68,15 @@ public class Box implements Serializable {
     //constructeur par copie
     public Box(Box b) {
         this();
-        this.idBox = b.idBox;
+        this.nomBox = b.nomBox;
         this.hBox = b.hBox;
         this.lBox = b.lBox;
         this.prixBox = b.prixBox;
     }
     
         //constructeur données
-    public Box(String idBox, int hBox, int lBox, double prixBox) {
-        this.idBox = idBox;
+    public Box(String nomBox, int hBox, int lBox, double prixBox) {
+        this.nomBox = nomBox;
         this.hBox = hBox;
         this.lBox = lBox;
         this.prixBox = prixBox;
@@ -78,9 +84,14 @@ public class Box implements Serializable {
     
         //getters
     //Recupere l'identifiant de la Box
-    public String getIdentifiant() {
+    public int getIdentifiant() {
         return idBox;
     }
+
+    public String getNomBox() {
+        return nomBox;
+    }
+    
     //Recupere la longueur de la Box
     public int getLongueur() {
         return lBox;
