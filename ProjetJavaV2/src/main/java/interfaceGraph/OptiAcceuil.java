@@ -5,7 +5,7 @@
  */
 package interfaceGraph;
 
-import java.sql.Connection;
+import java.awt.*;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,6 +14,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.swing.DefaultListModel;
 import modele.Instance;
+import modele.Solution;
 
 /**
  *
@@ -23,26 +24,80 @@ public class OptiAcceuil extends javax.swing.JFrame {
     
         //attributs
     //liste instances
-    List<Instance> RequeteInstance;
+    List<String> RequeteInstance;
     /**
      * Creates new form OptiAcceuil
      */
     public OptiAcceuil() {
         initComponents();
+        initFenetre();
+        AfficherListInstance();
     }
     
         //methodes
+    
+    
+    private void initFenetre(){
+        this.setTitle("OptiBox");
+        //this.setSize(1430, 700); 
+        
+        //couleurs
+        //les boutons
+        this.jButton_affInstance.setBackground(Color.decode("#90CAF9"));
+        this.jButton_affInstance.setForeground(Color.WHITE);
+        //le titre
+        this.jTitre.setForeground(Color.decode("#546E7A"));
+        this.jTitre.setFont(new Font("Tratto", Font.BOLD, 30));
+        this.setVisible(true);
+    }
+
+    // gestion requete et affichage liste instance
+    
+    
+    
     /**
      * recuperation des instances
+     * afficher les noms des instances dans l'acceuil
+     * le type d'affichage est string
      */
+    public void AfficherListInstance()  {
+                
+        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("OptiBoxPU");
+        final EntityManager em = emf.createEntityManager();
+        try {
+            
+            final EntityTransaction et = em.getTransaction();
+            try {
+                et.begin();
+                String strQuery = "SELECT i.nom FROM Instance i";
+                Query query = em.createQuery(strQuery);
+                //requete instance : quelques parties récupérés du tp 5
+                
+                RequeteInstance = (List<String>) query.getResultList();
+                DefaultListModel listeInstanceNom = new DefaultListModel();
+                this.jListNomInstance.setModel(listeInstanceNom);
+                for (String instanceNom : RequeteInstance){
+                    System.out.println(instanceNom);
+                    listeInstanceNom.addElement(instanceNom);  
+                }
+                et.commit();
+            } catch (Exception ex) {
+                et.rollback();
+                System.out.println(ex);
+            }
+            
+        } finally {
+            if(em != null && em.isOpen()){
+                em.close();
+            }
+            if(emf != null && emf.isOpen()){
+                emf.close();
+            }
+        }         
+    }
     
     
-    /**
-     * Affichage des instances sur le bdd
-     * necessite une connexion
-     */
-    
-    
+    //gestion boutton
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,16 +108,21 @@ public class OptiAcceuil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jTitre = new javax.swing.JLabel();
+        jButton_affInstance = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListNomInstance = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("OptiBox");
+        jTitre.setText("OptiBox");
 
-        jButton1.setText("Afficher Instance");
+        jButton_affInstance.setText("Afficher Instance");
+        jButton_affInstance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_affInstanceActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jListNomInstance);
 
@@ -72,30 +132,33 @@ public class OptiAcceuil extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTitre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 38, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_affInstance)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 39, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addComponent(jTitre, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(jButton_affInstance)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 80, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_affInstanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_affInstanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_affInstanceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,7 +186,7 @@ public class OptiAcceuil extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(OptiAcceuil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        //OptiAcceuil optiacceuil = new OptiAcceuil();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -133,9 +196,9 @@ public class OptiAcceuil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<Instance> jListNomInstance;
+    private javax.swing.JButton jButton_affInstance;
+    private javax.swing.JList<String> jListNomInstance;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jTitre;
     // End of variables declaration//GEN-END:variables
 }
