@@ -91,16 +91,18 @@ public class Produit implements Serializable {
     
     
     //setter
-    public void setInstanceProd(Instance instanceProd) {
+    public boolean setInstanceProd(Instance instanceProd) {
         
-        if (instanceProd == null) return;
+        if (instanceProd == null) return false;
         this.instanceProd = instanceProd;
+        return true;
     }
     
-        public void setPileProd(Pile pile) {
+        public boolean setPileProd(Pile pile) {    
         
-        if (pile == null) return;
+        if (pile == null) return false;
         this.pileProd = pile;
+        return true;
     }
     
     

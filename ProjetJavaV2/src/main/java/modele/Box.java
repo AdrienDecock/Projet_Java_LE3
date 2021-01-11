@@ -54,7 +54,7 @@ public class Box implements Serializable {
     @OneToMany(mappedBy="boxOptiBox",cascade = CascadeType.PERSIST)
     private Set<OptiBox> setOptiBox;
     
-    //constructeur défaut
+    //constructeur dÃ©faut
     public Box() {
         this.nomBox = "DEFAULT_IDBOX";
         this.hBox = 0;
@@ -74,7 +74,7 @@ public class Box implements Serializable {
         this.prixBox = b.prixBox;
     }
     
-        //constructeur données
+        //constructeur donnÃ©es
     public Box(String nomBox, int hBox, int lBox, double prixBox) {
         this.nomBox = nomBox;
         this.hBox = hBox;
@@ -113,6 +113,20 @@ public class Box implements Serializable {
         if (instanceBox == null) return;
         
         this.instanceBox = instanceBox;
+    }
+    
+    
+    
+    public boolean addBoxOptibox(OptiBox opti){
+        
+        if (opti == null) return false;
+        if (!opti.estLibreBox()) return false;
+        
+        if (!opti.setBoxOptiBox(this)) return false;
+        this.setOptiBox.add(opti);
+        return true;
+        
+        
     }
     
     

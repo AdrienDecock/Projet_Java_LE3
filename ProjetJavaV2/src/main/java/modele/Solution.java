@@ -41,10 +41,18 @@ public class Solution implements Serializable {
     }
 
     //constructeur par données
-    public Solution(String idSolution, double prixTotal) {
+    public Solution(String idSolution, Instance instance) {
         this();
         this.idSolution = idSolution;
-        this.prixTotal = prixTotal;
+        instance.addSolution(this);
+    }
+    
+    
+    public boolean setInstanceSolution(Instance instance) {
+        
+        if (instance == null) return false;
+        this.instanceSolution = instance;
+        return true;
     }
 
         //getter
@@ -58,4 +66,15 @@ public class Solution implements Serializable {
         return prixTotal;
     }
 
+    
+    public boolean addOptiboxSolution(OptiBox opti){
+        
+        if (opti == null) return false;
+        if (!opti.estLibreSolution()) return false;
+        
+        if (!opti.setSolutionOptiBox(this)) return false;
+        this.setOptiBoxResultat.add(opti);
+        return true;
+        
+    }
 }

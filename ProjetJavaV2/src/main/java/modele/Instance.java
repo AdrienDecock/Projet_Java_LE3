@@ -85,6 +85,15 @@ public class Instance implements Serializable {
         return true;
     }
     
+    
+    public boolean addSolution(Solution sol){
+        
+        if (sol == null) return false;
+        sol.setInstanceSolution(this);
+        this.setSolution.add( sol );
+        return true;
+    }
+    
     /**
      * Ajouter les produits aux instances
      */

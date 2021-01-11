@@ -53,7 +53,7 @@ public class Pile implements Serializable {
     //constructeur par données
     public Pile( OptiBox optiboxPile) {
         this();
-        this.optiBoxPile = optiboxPile;
+        optiboxPile.addPileOptiBox(this);
     }
     
     
@@ -99,7 +99,9 @@ public class Pile implements Serializable {
         
     }
     
+    
     public boolean empiler(Produit p){
+        if (p == null) return false; //verif si le produit existe
         if (!p.estLibre()) return false; //on verifie si le produit est deja empile
         if (optiBoxPile == null) return false; //on verifie l'existance d'une optiBox
         

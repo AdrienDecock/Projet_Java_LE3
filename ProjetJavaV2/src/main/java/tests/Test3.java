@@ -24,7 +24,8 @@ public class Test3 { //test Pile
                 et.begin();
 
                 Box b = new Box("petiteBoite", 10, 10, 10);
-                OptiBox optiBox = new OptiBox(b);
+                Solution sol = new Solution();
+                OptiBox optiBox = new OptiBox(b,sol);
                 
                 Produit p1 = new Produit("prod1",2,3);
                 Produit p2 = new Produit("prod2",3,4);

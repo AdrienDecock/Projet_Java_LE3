@@ -47,9 +47,10 @@ public class OptiBox implements Serializable {
         this.setPile = new HashSet<>();
     }
     //constructeir par données
-    public OptiBox(Box boxOptiBox) {
+    public OptiBox(Box box, Solution sol) {
         this();
-        this.boxOptiBox = boxOptiBox;
+        box.addBoxOptibox(this);
+        sol.addOptiboxSolution(this);
     }
     
     
@@ -73,14 +74,16 @@ public class OptiBox implements Serializable {
     
     
         //setters
-    public void setBoxOptiBox(Box boxOptiBox) {
-        if (boxOptiBox == null) return;
+    public boolean setBoxOptiBox(Box boxOptiBox) {
+        if (boxOptiBox == null) return false;
         this.boxOptiBox = boxOptiBox;
+        return true;
     }
 
-    public void setSolutionOptiBox(Solution solutionOptiBox) {
-        if ( solutionOptiBox == null) return;
+    public boolean setSolutionOptiBox(Solution solutionOptiBox) {
+        if ( solutionOptiBox == null) return false;
         this.solutionOptiBox = solutionOptiBox;
+        return true;
     }
     
     //return la longueur non utilisée dans la boite
@@ -94,6 +97,21 @@ public class OptiBox implements Serializable {
         }
         return lDispo;
     }
+    
+    public boolean estLibreBox(){
+        
+      if (this.boxOptiBox == null) return true;
+        return false;
+        
+    }
+    
+    public boolean estLibreSolution(){
+        
+      if (this.boxOptiBox == null) return true;
+        return false;
+        
+    }
+    
     
     public boolean addPileOptiBox(Pile p){
         
