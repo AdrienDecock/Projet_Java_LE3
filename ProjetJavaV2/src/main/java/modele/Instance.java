@@ -96,5 +96,15 @@ public class Instance implements Serializable {
         this.setProduit.add(p);
         return true;
     }
- 
+    
+    /**
+     * Methode getString qui affiche le nom
+     */
+    @Override
+    public String toString() {
+        return this.getNom(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
 }

@@ -6,6 +6,8 @@
 package interfaceGraph;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,6 +15,9 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import modele.Instance;
 import modele.Solution;
 
@@ -24,7 +29,7 @@ public class OptiAcceuil extends javax.swing.JFrame {
     
         //attributs
     //liste instances
-    List<String> RequeteInstance;
+    private List<String> RequeteInstance;
     /**
      * Creates new form OptiAcceuil
      */
@@ -33,8 +38,8 @@ public class OptiAcceuil extends javax.swing.JFrame {
         initFenetre();
         AfficherListInstance();
     }
-    
         //methodes
+
     
     
     private void initFenetre(){
@@ -60,7 +65,8 @@ public class OptiAcceuil extends javax.swing.JFrame {
      * afficher les noms des instances dans l'acceuil
      * le type d'affichage est string
      */
-    public void AfficherListInstance()  {
+    
+    public void AfficherListInstance(){
                 
         final EntityManagerFactory emf = Persistence.createEntityManagerFactory("OptiBoxPU");
         final EntityManager em = emf.createEntityManager();
@@ -97,6 +103,24 @@ public class OptiAcceuil extends javax.swing.JFrame {
     }
     
     
+    /**
+     * Methode qui permet d'afficher les box et les produits de l'instance selectionnée
+     */
+    private void afficherDessinInstance(){
+        
+        
+        OptiInstanceDessin jc = new OptiInstanceDessin();        
+        JFrame frame = new JFrame("Dessin Instance");
+        JLabel label = new JLabel("hello");
+        frame.add(label);
+        frame.getContentPane().add(jc);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
+       
+    
+    
     //gestion boutton
     
     /**
@@ -118,12 +142,22 @@ public class OptiAcceuil extends javax.swing.JFrame {
         jTitre.setText("OptiBox");
 
         jButton_affInstance.setText("Afficher Instance");
+        jButton_affInstance.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_InstanceMouseClicked(evt);
+            }
+        });
         jButton_affInstance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_affInstanceActionPerformed(evt);
             }
         });
 
+        jListNomInstance.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListNomInstanceMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jListNomInstance);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,8 +191,35 @@ public class OptiAcceuil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_affInstanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_affInstanceActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
+        //on ouvre la page des dessins de box et produit
+        try {
+           
+            //on recupere le nom de l'instance selectionée
+            String nomInstance = this.jListNomInstance.getSelectedValue();
+            System.out.println(nomInstance);
+            
+            afficherDessinInstance();
+           
+           
+        } catch (Exception e) {
+            System.out.println("erreur click bouton (afficher Instance)");
+        }
+            
+        
     }//GEN-LAST:event_jButton_affInstanceActionPerformed
+
+    private void jButton_InstanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_InstanceMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton_InstanceMouseClicked
+
+    private void jListNomInstanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListNomInstanceMouseClicked
+        // TODO add your handling code here:
+        //Instance inst = this.jListNomInstance.getSelectedValue();
+        
+        //String nomInstance = inst.getNom();
+    }//GEN-LAST:event_jListNomInstanceMouseClicked
 
     /**
      * @param args the command line arguments
