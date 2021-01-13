@@ -10,10 +10,10 @@
     <class>modele.Solution</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/OptiBox2"/>
-      <property name="javax.persistence.jdbc.user" value="loic"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/OptiBox"/>
+      <property name="javax.persistence.jdbc.user" value="nada"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-      <property name="javax.persistence.jdbc.password" value="loic"/>
+      <property name="javax.persistence.jdbc.password" value="nada"/>
       <property name="eclipselink.ddl-generation" value="none"/>
     </properties>
   </persistence-unit>

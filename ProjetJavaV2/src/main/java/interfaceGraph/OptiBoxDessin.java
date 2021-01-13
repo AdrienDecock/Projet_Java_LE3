@@ -8,12 +8,14 @@ package interfaceGraph;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Set;
+import modele.Box;
 
 /**
  *
  * @author nadae
  */
-public class OptiInstanceDessin extends javax.swing.JPanel {
+public class OptiBoxDessin extends javax.swing.JPanel {
     
     /**
      * Pour dessiner on utilise un jPanel
@@ -27,12 +29,18 @@ public class OptiInstanceDessin extends javax.swing.JPanel {
      */
     
         //attribut et constantes
-    
+    //set des box
+    private Set<Box> setAffichageBox;
+    //constante qui permet de separer les box entre eux
+    private static int hauteurSeparateurBox =0;
+    private static final int separateurBox=10;
     /**
      * Creates new form OptiInstanceDessin
+     * @param b
      */
-    public OptiInstanceDessin() {
+    public OptiBoxDessin(Set<Box> b) {
         initComponents();
+        this.setAffichageBox =b;
         
     }
     public void dessiner(){
@@ -42,33 +50,39 @@ public class OptiInstanceDessin extends javax.swing.JPanel {
     /**
      * 
      */
-    
+    @Override
     public void paint(Graphics g){
         super.paint(g);
-        paintBox(g,100,100,100,100);
-        paintProduit(g,200,200,100,100);
+        paintBox(g,setAffichageBox);
     }
     /**
      * Dessiner les box
      * 
+     * @param g
+     * @param yB
+     * @param b
      */
     
-    public void paintBox(Graphics g, int xB,int yB, int widthB, int heightB){
+    public void paintBox(Graphics g, Set<Box> b){
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.pink); //definir une couleur
-        g2.fillRect(xB,yB,widthB,heightB);
+        
+        for (Box objBox : b) {
+            g2.setColor(Color.pink); //definir une couleur
+            
+            //System.out.println(objBox.getHauteur());
+            //System.out.println(hauteurSeparateurBox);
+            //System.out.println(hauteurSeparateurBox + separateurBox);
+            //System.out.println("\n");
+            g2.fillRect(0 , hauteurSeparateurBox , (objBox.getLongueur())/5 , (objBox.getHauteur())/5);
+            
+            g2.drawRect(0, hauteurSeparateurBox +(objBox.getHauteur())/5, (objBox.getLongueur())/5, separateurBox);
+            hauteurSeparateurBox += objBox.getHauteur()/5+separateurBox;
+        }
+        
     }
     
     
-    /**
-     * Dessiner les produits
-     * 
-     */
-    public void paintProduit(Graphics g, int xP,int yP, int widthP, int heightP){
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.white); //definir une couleur
-        g2.fillRect(200,200,100,100);
-    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.

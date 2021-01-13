@@ -105,6 +105,9 @@ public class Produit implements Serializable {
         return true;
     }
     
-    
+    @Override
+    public String toString() {
+        return this.getNomProd(); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

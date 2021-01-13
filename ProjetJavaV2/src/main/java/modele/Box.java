@@ -61,7 +61,7 @@ public class Box implements Serializable {
         this.lBox = 0;
         this.prixBox = 0.0;
         this.instanceBox = new Instance();
-      //  this.setOptiBox = new HashSet<>();
+        this.setOptiBox = new HashSet<>();
     }
     
         
@@ -129,6 +129,9 @@ public class Box implements Serializable {
         
     }
     
-    
+    @Override
+    public String toString() {
+        return this.getNomBox(); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

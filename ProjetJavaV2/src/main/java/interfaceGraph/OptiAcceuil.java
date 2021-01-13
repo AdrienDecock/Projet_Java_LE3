@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -18,7 +19,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import modele.Box;
 import modele.Instance;
+import modele.Produit;
 import modele.Solution;
 
 /**
@@ -29,7 +32,7 @@ public class OptiAcceuil extends javax.swing.JFrame {
     
         //attributs
     //liste instances
-    private List<String> RequeteInstance;
+    private List<Instance> RequeteInstance;
     /**
      * Creates new form OptiAcceuil
      */
@@ -75,14 +78,14 @@ public class OptiAcceuil extends javax.swing.JFrame {
             final EntityTransaction et = em.getTransaction();
             try {
                 et.begin();
-                String strQuery = "SELECT i.nom FROM Instance i";
+                String strQuery = "SELECT i FROM Instance i";
                 Query query = em.createQuery(strQuery);
                 //requete instance : quelques parties récupérés du tp 5
                 
-                RequeteInstance = (List<String>) query.getResultList();
+                RequeteInstance = (List<Instance>) query.getResultList();
                 DefaultListModel listeInstanceNom = new DefaultListModel();
                 this.jListNomInstance.setModel(listeInstanceNom);
-                for (String instanceNom : RequeteInstance){
+                for (Instance instanceNom : RequeteInstance){
                     System.out.println(instanceNom);
                     listeInstanceNom.addElement(instanceNom);  
                 }
@@ -101,26 +104,7 @@ public class OptiAcceuil extends javax.swing.JFrame {
             }
         }         
     }
-    
-    
-    /**
-     * Methode qui permet d'afficher les box et les produits de l'instance selectionnée
-     */
-    private void afficherDessinInstance(){
-        
-        
-        OptiInstanceDessin jc = new OptiInstanceDessin();        
-        JFrame frame = new JFrame("Dessin Instance");
-        JLabel label = new JLabel("hello");
-        frame.add(label);
-        frame.getContentPane().add(jc);
-        frame.pack();
-        frame.setVisible(true);
-    }
-    
-       
-    
-    
+      
     //gestion boutton
     
     /**
@@ -132,6 +116,7 @@ public class OptiAcceuil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        scrollPane1 = new java.awt.ScrollPane();
         jTitre = new javax.swing.JLabel();
         jButton_affInstance = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -196,10 +181,20 @@ public class OptiAcceuil extends javax.swing.JFrame {
         try {
            
             //on recupere le nom de l'instance selectionée
-            String nomInstance = this.jListNomInstance.getSelectedValue();
-            System.out.println(nomInstance);
+            Instance instance = this.jListNomInstance.getSelectedValue();
+            Set<Box> b = instance.getBox();
+            Set<Produit> p = instance.getProduit();
+            for (Box object : b) {
+                System.out.println(object);
+            }
+            for (Produit objProd : p) {
+                System.out.println(objProd);
+            }
+            OptiAfficherDessinInstance optiDessin = new OptiAfficherDessinInstance(b, p); 
+            System.out.println(optiDessin.toString());
             
-            afficherDessinInstance();
+            //afficherDessinInstance();
+            //OptiAfficherDessin optiAfficherDessin = new OptiAfficherDessin();
            
            
         } catch (Exception e) {
@@ -258,8 +253,9 @@ public class OptiAcceuil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_affInstance;
-    private javax.swing.JList<String> jListNomInstance;
+    private javax.swing.JList<Instance> jListNomInstance;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jTitre;
+    private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -71,6 +71,12 @@ public class Instance implements Serializable {
         return nom;
     }
     
+    public Set<Box> getBox(){
+        return setBox;
+    }
+    public Set<Produit> getProduit(){
+        return setProduit;
+    }
         //methodes
   
     /**
