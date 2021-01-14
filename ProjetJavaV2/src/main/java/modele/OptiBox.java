@@ -49,10 +49,12 @@ public class OptiBox implements Serializable {
     //constructeir par données
     public OptiBox(Box box, Solution sol) {
         this();
-        box.addBoxOptibox(this);
-        sol.addOptiboxSolution(this);
+        if (box!=null)
+            box.addBoxOptibox(this);
+        if (sol !=null)
+            sol.addOptiboxSolution(this);
     }
-    
+    /*
     
         //getters
     //Recupere la longueur de la Box
@@ -71,7 +73,7 @@ public class OptiBox implements Serializable {
         return boxOptiBox.getPrix();
     }
    
-    
+    */
     
         //setters
     public boolean setBoxOptiBox(Box boxOptiBox) {
@@ -85,7 +87,7 @@ public class OptiBox implements Serializable {
         this.solutionOptiBox = solutionOptiBox;
         return true;
     }
-    
+    /*
     //return la longueur non utilisée dans la boite
     public int getLongueurDispo(){
         
@@ -97,7 +99,7 @@ public class OptiBox implements Serializable {
         }
         return lDispo;
     }
-    
+    */
     public boolean estLibreBox(){
         
       if (this.boxOptiBox == null) return true;
@@ -112,7 +114,7 @@ public class OptiBox implements Serializable {
         
     }
     
-    
+    /*
     public boolean addPileOptiBox(Pile p){
         
         if (p == null) return false;
@@ -125,5 +127,5 @@ public class OptiBox implements Serializable {
         return true;
     }
     
-    
+*/
 }

@@ -27,7 +27,7 @@ public class Test3 { //test Pile
                 Instance inst = new Instance("nomInstance");
                 Box b = new Box("petiteBoite", 10, 10, 10, inst);
                 Solution sol = new Solution("nom_solution",inst);
-                //OptiBox optiBox = new OptiBox(b,sol);
+                OptiBox optiBox = new OptiBox(b,sol);
                 
                 Produit p1 = new Produit("prod1",2,3,inst);
                 Produit p2 = new Produit("prod2",3,4,inst);
@@ -39,12 +39,12 @@ public class Test3 { //test Pile
                 //System.out.println(pile.empiler(p1));
                 //System.out.println(pile.empiler(p3));
                 //pile.empiler(p1);
-                
+                //sol.setPrixTotal(36);
                 
                 em.persist(b);
                 em.persist(inst);
                 em.persist(sol);
-                //em.persist(optiBox);
+                em.persist(optiBox);
                 em.persist(p1);
                 em.persist(p2);
                 em.persist(p3);

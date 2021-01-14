@@ -51,12 +51,14 @@ public class Pile implements Serializable {
         this.listeProduitPile = new LinkedList<>();
     }
     //constructeur par données
+    /*
     public Pile( OptiBox optiboxPile) {
         this();
-        optiboxPile.addPileOptiBox(this);
+        if (optiboxPile != null)
+            optiboxPile.addPileOptiBox(this);
     }
     
-    
+    */
         //getters
     //recupere l'id
     public int getIdPile() {
@@ -83,7 +85,6 @@ public class Pile implements Serializable {
     public boolean setOptiBoxPile(OptiBox b) {
         
         if (b == null) return false;
-        if (!this.estLibre()) return false;
         this.optiBoxPile = b;
         return true;
     }
@@ -99,8 +100,9 @@ public class Pile implements Serializable {
         
     }
     
-    
+    /*
     public boolean empiler(Produit p){
+        
         if (p == null) return false; //verif si le produit existe
         if (!p.estLibre()) return false; //on verifie si le produit est deja empile
         if (optiBoxPile == null) return false; //on verifie l'existance d'une optiBox
@@ -127,6 +129,6 @@ public class Pile implements Serializable {
             return true;
         }
     }
-   
+   */
    
 }

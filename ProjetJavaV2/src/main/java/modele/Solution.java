@@ -63,6 +63,11 @@ public class Solution implements Serializable {
         return true;
     }
 
+    public void setPrixTotal(double prixTotal) {
+        this.prixTotal = prixTotal;
+    }
+
+    
 
     //recupere le prix total
     public double getPrixTotal() {
@@ -75,7 +80,7 @@ public class Solution implements Serializable {
         if (opti == null) return false;
         if (!opti.estLibreSolution()) return false;
         
-        if (!opti.setSolutionOptiBox(this)) return false;
+        if (opti.setSolutionOptiBox(this)) return false;
         this.setOptiBoxResultat.add(opti);
         return true;
         
