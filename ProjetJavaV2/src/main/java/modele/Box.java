@@ -67,6 +67,7 @@ public class Box implements Serializable {
     
         //constructeur donnÃ©es
     public Box(String nomBox, int hBox, int lBox, double prixBox, Instance i) {
+        this();
         if ( nomBox != null)
             this.nomBox = nomBox;
         if (hBox > 0)
@@ -114,11 +115,10 @@ public class Box implements Serializable {
     
     
     
-    public boolean addBoxOptibox(OptiBox opti){
+    public boolean addOptiboxBox(OptiBox opti){
         
         if (opti == null) return false;
         if (!opti.estLibreBox()) return false;
-        
         if (!opti.setBoxOptiBox(this)) return false;
         this.setOptiBox.add(opti);
         return true;

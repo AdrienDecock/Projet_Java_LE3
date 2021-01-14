@@ -25,34 +25,50 @@ public class Test3 { //test Pile
 
                 
                 Instance inst = new Instance("nomInstance");
-                Box b = new Box("petiteBoite", 10, 10, 10, inst);
+                Box b1 = new Box("petiteBoite", 7, 6, 10, inst);
+                Box b2 = new Box("petiteBoite", 15, 10, 17, inst);
                 Solution sol = new Solution("nom_solution",inst);
-                OptiBox optiBox = new OptiBox(b,sol);
+
                 
                 Produit p1 = new Produit("prod1",2,3,inst);
                 Produit p2 = new Produit("prod2",3,4,inst);
-                Produit p3 = new Produit("prod3",5,3,inst);
+                Produit p3 = new Produit("prod3",5,4,inst);
+                Produit p4 = new Produit("prod1",2,5,inst);
+                Produit p5 = new Produit("prod2",1,4,inst);
+                Produit p6 = new Produit("prod3",4,2,inst);
+                Produit p7 = new Produit("prod1",2,2,inst);
+                Produit p8 = new Produit("prod2",2,2,inst);
+                Produit p9 = new Produit("prod3",12,9,inst);
                 
-                //Pile pile = new Pile(optiBox);
-                //System.out.println(pile.empiler(p1));
-                //System.out.println(pile.empiler(p2));
-                //System.out.println(pile.empiler(p1));
-                //System.out.println(pile.empiler(p3));
-                //pile.empiler(p1);
-                //sol.setPrixTotal(36);
                 
-                em.persist(b);
+                OptiBox optiBox1 = new OptiBox(b1,sol);
+                Pile pile1 = new Pile(optiBox1);
+                pile1.empiler(p4);
+                pile1.empiler(p2);
+                pile1.empiler(p1);
+                
+                OptiBox optiBox2 = new OptiBox(b1,sol);
+                Pile pile2 = new Pile(optiBox2);
+                pile2.empiler(p3);
+                pile2.empiler(p7);
+                Pile pile3 = new Pile(optiBox2);
+                pile3.empiler(p5);
+                pile3.empiler(p6);
+                pile3.empiler(p8);
+                
+                OptiBox optiBox3 = new OptiBox(b2,sol);
+                Pile pile4 = new Pile(optiBox3);
+                pile4.empiler(p9);
+                
+                //em.persist(b);
                 em.persist(inst);
-                em.persist(sol);
-                em.persist(optiBox);
-                em.persist(p1);
-                em.persist(p2);
-                em.persist(p3);
+                //em.persist(sol);
+                //em.persist(optiBox);
+                //em.persist(p1);
+                //em.persist(p2);
+                //em.persist(p3);
                 //em.persist(pile);
                 
-
-                
-
 
                 et.commit();
             } catch (Exception ex) {
