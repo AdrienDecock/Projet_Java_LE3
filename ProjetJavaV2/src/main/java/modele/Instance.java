@@ -57,6 +57,7 @@ public class Instance implements Serializable {
         //constructeur par données
     public Instance(String nom) {
         this();
+        if (nom != null)
         this.nom = nom;
     }
     
@@ -112,13 +113,6 @@ public class Instance implements Serializable {
         return true;
     }
     
-    /**
-     * Methode getString qui affiche le nom
-     */
-    @Override
-    public String toString() {
-        return this.getNom(); //To change body of generated methods, choose Tools | Templates.
-    }
     
     
     

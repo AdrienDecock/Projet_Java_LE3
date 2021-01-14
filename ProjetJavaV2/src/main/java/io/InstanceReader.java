@@ -128,8 +128,8 @@ public class InstanceReader {
             + elem.getHauteur() + " - "
             + elem.getPrix()
             );
-            Box box = new Box(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur(), elem.getPrix());
-            instance.addBox( box );
+            Box box = new Box(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur(), elem.getPrix(),instance);
+            
             //em.persist(box);
             
             ////////////////////////////////////////////
@@ -173,8 +173,8 @@ public class InstanceReader {
             
             for (i =0; i< elem.getQuantite(); i++){
             
-            Produit produit = new Produit(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur());
-            instance.addProduit(produit );
+            Produit produit = new Produit(elem.getIdentifiant(), elem.getHauteur(), elem.getLongueur(),instance);
+            
             //em.persist(produit);      
             }
         }

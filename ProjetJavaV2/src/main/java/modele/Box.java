@@ -64,22 +64,19 @@ public class Box implements Serializable {
         this.setOptiBox = new HashSet<>();
     }
     
-        
-    //constructeur par copie
-    public Box(Box b) {
-        this();
-        this.nomBox = b.nomBox;
-        this.hBox = b.hBox;
-        this.lBox = b.lBox;
-        this.prixBox = b.prixBox;
-    }
     
         //constructeur donnÃ©es
-    public Box(String nomBox, int hBox, int lBox, double prixBox) {
-        this.nomBox = nomBox;
-        this.hBox = hBox;
-        this.lBox = lBox;
-        this.prixBox = prixBox;
+    public Box(String nomBox, int hBox, int lBox, double prixBox, Instance i) {
+        if ( nomBox != null)
+            this.nomBox = nomBox;
+        if (hBox > 0)
+            this.hBox = hBox;
+        if (lBox > 0)
+            this.lBox = lBox;
+        if (prixBox > 0)
+            this.prixBox = prixBox;
+        if (i != null)
+            i.addBox(this);
     }
     
         //getters
@@ -128,10 +125,6 @@ public class Box implements Serializable {
         
         
     }
-    
-    @Override
-    public String toString() {
-        return this.getNomBox(); //To change body of generated methods, choose Tools | Templates.
-    }
+
     
 }

@@ -17,8 +17,13 @@ public class Solution implements Serializable {
         //attributs
     //identifiant de la solution
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "IDSOLUTION")
-    private String idSolution;
+    private int idSolution;
+    
+    //le nom de la solution
+    @Column(name = "NOM", length = 45, nullable = false)
+    private String nomSolution;
 
     //prix de la solution
     @Column(name = "PRIXTOTAL", nullable = false  )
@@ -36,14 +41,17 @@ public class Solution implements Serializable {
     //constructeur par defaut
     public Solution() {
         
+        this.nomSolution = "DEFAULT_SOLUTION";
         this.prixTotal = 0.0;
         this.setOptiBoxResultat = new HashSet<>();
     }
 
     //constructeur par données
-    public Solution(String idSolution, Instance instance) {
+    public Solution(String nomSol, Instance instance) {
         this();
-        this.idSolution = idSolution;
+        if (nomSol != null)
+            this.nomSolution = nomSol;
+        
         instance.addSolution(this);
     }
     
@@ -55,11 +63,6 @@ public class Solution implements Serializable {
         return true;
     }
 
-        //getter
-    //recuper l'id
-    public String getIdSolution() {
-        return idSolution;
-    }
 
     //recupere le prix total
     public double getPrixTotal() {

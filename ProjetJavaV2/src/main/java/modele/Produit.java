@@ -54,13 +54,20 @@ public class Produit implements Serializable {
         this.nomProd = "DEFAULT_NOM";
         this.hProd = 0;
         this.lProd = 0;
+        this.instanceProd = new Instance();
     }
     
         //constructeur par données
-    public Produit(String nomProd, int hProd, int lProd) {
-        this.nomProd = nomProd;
-        this.hProd = hProd;
-        this.lProd = lProd;
+    public Produit(String nomProd, int hProd, int lProd, Instance inst) {
+        if (nomProd != null)
+            this.nomProd = nomProd;
+        if (hProd > 0)
+            this.hProd = hProd;
+        if (lProd > 0)
+            this.lProd = lProd;
+        
+        if (inst != null)
+            inst.addProduit(this);
     }
     
         //getters

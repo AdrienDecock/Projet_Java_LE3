@@ -12,7 +12,7 @@ import modele.*;
  *
  * @author loic
  */
-public class Test3 { //test Pile
+public class Test4 { //test Pile
 
     public static void main(String[] args) {
 
@@ -23,15 +23,13 @@ public class Test3 { //test Pile
             try {
                 et.begin();
 
-                
-                Instance inst = new Instance("nomInstance");
-                Box b = new Box("petiteBoite", 10, 10, 10, inst);
-                Solution sol = new Solution("nom_solution",inst);
+                //Box b = new Box("petiteBoite", 10, 10, 10,inst);
+                Solution sol = new Solution();
                 //OptiBox optiBox = new OptiBox(b,sol);
                 
-                Produit p1 = new Produit("prod1",2,3,inst);
-                Produit p2 = new Produit("prod2",3,4,inst);
-                Produit p3 = new Produit("prod3",5,3,inst);
+                //Produit p1 = new Produit("prod1",2,3);
+                //Produit p2 = new Produit("prod2",3,4);
+                //Produit p3 = new Produit("prod3",5,3);
                 
                 //Pile pile = new Pile(optiBox);
                 //System.out.println(pile.empiler(p1));
@@ -41,13 +39,11 @@ public class Test3 { //test Pile
                 //pile.empiler(p1);
                 
                 
-                em.persist(b);
-                em.persist(inst);
-                em.persist(sol);
+                //em.persist(b);
                 //em.persist(optiBox);
-                em.persist(p1);
-                em.persist(p2);
-                em.persist(p3);
+                //em.persist(p1);
+                //em.persist(p2);
+                //em.persist(p3);
                 //em.persist(pile);
                 
 
