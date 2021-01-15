@@ -70,6 +70,10 @@ public class Produit implements Serializable {
             inst.addProduit(this);
     }
     
+    public void setNomProd(String nom){
+        this.nomProd = nom;
+    }
+    
         //getters
     //Recupere l'identifiant du produit
     public int getIdentifiant() {

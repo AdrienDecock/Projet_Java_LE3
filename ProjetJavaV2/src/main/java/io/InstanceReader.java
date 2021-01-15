@@ -30,6 +30,7 @@ import javax.persistence.Persistence;
 import modele.Box;
 import modele.Instance;
 import modele.Produit;
+import modele.Solution;
 
 /**
  * Classe qui permet de lire une instance pour le projet de POO3 2020/2021.
@@ -449,6 +450,9 @@ public class InstanceReader {
      */
     public static void main(String[] args) {
         List<Instance> setInstances = new ArrayList<>();
+        Solution solution;
+        InstanceReader reader;
+        Instance instance;
         //try {
             String filename = new String();
             final EntityManagerFactory emf = Persistence.createEntityManagerFactory("OptiBoxPU");
@@ -462,8 +466,13 @@ public class InstanceReader {
                         //int i =1;
                         filename = "instance_"+i+".csv";
                         System.out.println("\n\nInstance : " +filename);
-                        InstanceReader reader = new InstanceReader(filename);
-                        Instance instance =  reader.readInstance();
+                        reader = new InstanceReader(filename);
+                        instance =  reader.readInstance();
+                        
+                        //on crée la solution pour chacune des instance 
+                        solution = new Solution("solution_trivial_" + filename, instance);
+                        solution.creerSolutionTrivial();
+                        
                         setInstances.add(instance);
                         System.out.println("Instance lue avec success !");
                         

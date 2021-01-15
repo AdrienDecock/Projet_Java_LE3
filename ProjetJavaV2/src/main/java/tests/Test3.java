@@ -33,12 +33,12 @@ public class Test3 { //test Pile
                 Produit p1 = new Produit("prod1",2,3,inst);
                 Produit p2 = new Produit("prod2",3,4,inst);
                 Produit p3 = new Produit("prod3",5,4,inst);
-                Produit p4 = new Produit("prod1",2,5,inst);
-                Produit p5 = new Produit("prod2",1,4,inst);
-                Produit p6 = new Produit("prod3",4,2,inst);
-                Produit p7 = new Produit("prod1",2,2,inst);
-                Produit p8 = new Produit("prod2",2,2,inst);
-                Produit p9 = new Produit("prod3",12,9,inst);
+                Produit p4 = new Produit("prod4",2,5,inst);
+                Produit p5 = new Produit("prod5",1,2,inst);
+                Produit p6 = new Produit("prod6",4,2,inst);
+                Produit p7 = new Produit("prod7",2,2,inst);
+                Produit p8 = new Produit("prod8",2,2,inst);
+                Produit p9 = new Produit("prod9",12,9,inst);
                 
                 
                 OptiBox optiBox1 = new OptiBox(b1,sol);
@@ -70,6 +70,8 @@ public class Test3 { //test Pile
                 //em.persist(pile);
                 
 
+                
+                
                 et.commit();
             } catch (Exception ex) {
                 System.out.println(ex);

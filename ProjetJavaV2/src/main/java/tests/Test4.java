@@ -5,6 +5,7 @@
  */
 package tests;
 
+import io.InstanceReader;
 import javax.persistence.*;
 import modele.*;
 
@@ -23,32 +24,27 @@ public class Test4 { //test Pile
             try {
                 et.begin();
 
-                //Box b = new Box("petiteBoite", 10, 10, 10,inst);
-                Solution sol = new Solution();
-                //OptiBox optiBox = new OptiBox(b,sol);
-                
-                //Produit p1 = new Produit("prod1",2,3);
-                //Produit p2 = new Produit("prod2",3,4);
-                //Produit p3 = new Produit("prod3",5,3);
-                
-                //Pile pile = new Pile(optiBox);
-                //System.out.println(pile.empiler(p1));
-                //System.out.println(pile.empiler(p2));
-                //System.out.println(pile.empiler(p1));
-                //System.out.println(pile.empiler(p3));
-                //pile.empiler(p1);
-                
-                
-                //em.persist(b);
-                //em.persist(optiBox);
-                //em.persist(p1);
-                //em.persist(p2);
-                //em.persist(p3);
-                //em.persist(pile);
-                
+                Instance inst = new Instance("nomInstance");
+                Box b1 = new Box("petiteBoite", 7, 6, 10, inst);
+                Box b2 = new Box("grosseBoite", 15, 10, 17, inst);
+                Solution sol = new Solution("nom_solution",inst);
 
                 
-
+                Produit p1 = new Produit("prod1",2,3,inst);
+                Produit p2 = new Produit("prod2",3,4,inst);
+                Produit p3 = new Produit("prod3",5,4,inst);
+                Produit p4 = new Produit("prod4",2,5,inst);
+                Produit p5 = new Produit("prod5",1,4,inst);
+                Produit p6 = new Produit("prod6",4,2,inst);
+                Produit p7 = new Produit("prod7",2,2,inst);
+                Produit p8 = new Produit("prod8",2,2,inst);
+                Produit p9 = new Produit("prod9",12,9,inst);
+                
+             
+                //pile1.afficherPile();
+                em.persist(inst);
+                
+                sol.creerSolutionTrivial();
 
                 et.commit();
             } catch (Exception ex) {

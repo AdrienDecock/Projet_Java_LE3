@@ -127,5 +127,27 @@ public class OptiBox implements Serializable {
         return true;
     }
     
+    
+    public boolean empilerOptiBox(Produit p){
+        
+        //on test si on peut empiler le produit dans une des pile
+        for (Pile pile : this.setPile){
+            if (pile.empiler(p)) return true;
+        }
+        
+        //si aucune des piles ne peut accueil le produit, on test si on peut creer une nouvelle pile
+        if ( (this.getLongueurDispo() >= p.getLongueur()) && (this.getOptiHauteur() >= p.getHauteur()) )
+        {
+            //dans ce cas on crée une nouvelle pile
+            Pile pile = new Pile(this);
+            this.addPileOptiBox( pile );
+            if (!pile.empiler(p)) return false; //en théorie, empiler return true car la pile est vide
+            return true;
+        }
+        
+        //aucune pile crée, le produit n'est pas inséré dans l'OptiBox
+        return false;
+    }
+    
 
 }

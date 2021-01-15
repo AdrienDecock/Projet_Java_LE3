@@ -5,16 +5,17 @@
  */
 package tests;
 
+import io.InstanceReader;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
-import modele.Box;
-import modele.Instance;
-import modele.Produit;
+import modele.*;
 
 /**
  *
  * @author loic
  */
-public class Test2 {
+public class Test2 { 
 
     public static void main(String[] args) {
 
@@ -25,21 +26,22 @@ public class Test2 {
             try {
                 et.begin();
 
-                Instance i1 = new Instance("Trancen");
-                //Instance med2 = new Instance("Gator");
-                //Instance med3 = new Instance("Test");
-                //Box b1 = new Box("petite boite", 30, 15, 12.5);
-                //Box b2 = new Box("grande boite", 50, 35, 22.5);
-                //Produit p1 = new Produit("rouge",10,7,3);
+                Instance inst = new Instance("nomInstance");
+                Box b1 = new Box("petiteBoite", 7, 6, 10, inst);
+                Box b2 = new Box("grosseBoite", 15, 10, 17, inst);
+                Box b3 = new Box("petiteBoite", 7, 6, 9, inst);
+                Box b4 = new Box("grosseBoite", 15, 10, 30, inst);
+                Box b5 = new Box("petiteBoite", 7, 6, 45, inst);
+                Box b6 = new Box("grosseBoite", 15, 10, 20, inst);
+                
+                List<Box> listBox = new ArrayList();
                 
                 
-                em.persist(i1);
-                //em.persist(med2);
-                //em.persist(med3);
-                //em.persist(b1);
-                //em.persist(b2);
-                //em.persist(p1);
-
+             
+                //pile1.afficherPile();
+                em.persist(inst);
+                
+                //sol.creerSolutionTrivial();
 
                 et.commit();
             } catch (Exception ex) {
